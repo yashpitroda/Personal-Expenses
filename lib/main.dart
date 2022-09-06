@@ -150,46 +150,64 @@ class _MyHomePageState extends State<MyHomePage> {
         deleteTrans: _deleteTrsnsaction,
       ),
     );
+    List<Widget> _buildlandscapeContent(
+        MediaQueryData mediaQuery, AppBar _androidAppbar, Widget txListWidget) {
+      return [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "show chart",
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            Switch.adaptive(
+              // adaptive mean andriod ma andriod nu switch icon and ios ma ios nu swith icon
+              value: _isShowChart,
+              onChanged: (val) {
+                setState(() {
+                  _isShowChart = val;
+                });
+              },
+            ),
+          ],
+        ),
+        _isShowChart
+            ? Container(
+                height: (mediaQuery.size.height -
+                        _androidAppbar.preferredSize.height -
+                        mediaQuery.padding.top) *
+                    0.6,
+                child: Chart(resentTransaction: _resentTransaction))
+            : txListWidget,
+      ];
+    }
+
+    List<Widget> _buildPortaitContent(
+        MediaQueryData mediaQuery, AppBar _androidAppbar, Widget txListWidget) {
+      return [
+        Container(
+          height: (mediaQuery.size.height -
+                  _androidAppbar.preferredSize.height -
+                  mediaQuery.padding.top) *
+              0.3,
+          child: Chart(resentTransaction: _resentTransaction),
+        ),
+        txListWidget,
+      ];
+    }
+
     final mainPageBody = SafeArea(
         child: SingleChildScrollView(
       child: Column(
         children: [
           if (_islandscape)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "show chart",
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                Switch.adaptive(
-                  // adaptive mean andriod ma andriod nu switch icon and ios ma ios nu swith icon
-                  value: _isShowChart,
-                  onChanged: (val) {
-                    setState(() {
-                      _isShowChart = val;
-                    });
-                  },
-                ),
-              ],
-            ),
+            ..._buildlandscapeContent(mediaQuery, _androidAppbar, txListWidget),
           if (!_islandscape)
-            Container(
-                height: (mediaQuery.size.height -
-                        _androidAppbar.preferredSize.height -
-                        mediaQuery.padding.top) *
-                    0.3,
-                child: Chart(resentTransaction: _resentTransaction)),
-          if (!_islandscape) txListWidget,
-          if (_islandscape)
-            _isShowChart
-                ? Container(
-                    height: (mediaQuery.size.height -
-                            _androidAppbar.preferredSize.height -
-                            mediaQuery.padding.top) *
-                        0.6,
-                    child: Chart(resentTransaction: _resentTransaction))
-                : txListWidget,
+            ..._buildPortaitContent(mediaQuery, _androidAppbar, txListWidget),
+
+          //if (!_islandscape) txListWidget,
+          // if (_islandscape)
+
           // Divider(),
           // _usertransactionList.isEmpty
           //     ? Container(
