@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final matrialapp=MaterialApp(
+    final matrialapp = MaterialApp(
       title: 'Personal Expances',
       theme: ThemeData(
         primarySwatch: Colors.purple,
@@ -61,18 +61,18 @@ class _MyHomePageState extends State<MyHomePage> {
   // String amountInput = '';
   bool _isShowChart = false;
   final List<Transaction> _usertransactionList = [
-    Transaction(
-      id: "t1",
-      amount: 89.77,
-      date: DateTime.now(),
-      title: "books",
-    ),
-    Transaction(
-      id: "t2",
-      amount: 34.67,
-      date: DateTime.now(),
-      title: "goods",
-    ),
+    // Transaction(
+    //   id: "t1",
+    //   amount: 89.77,
+    //   date: DateTime.now(),
+    //   title: "books",
+    // ),
+    // Transaction(
+    //   id: "t2",
+    //   amount: 34.67,
+    //   date: DateTime.now(),
+    //   title: "goods",
+    // ),
   ];
   List<Transaction> get _resentTransaction {
     return _usertransactionList.where((tx) {
@@ -157,7 +157,10 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("show chart",style: Theme.of(context).textTheme.titleLarge,),
+                Text(
+                  "show chart",
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
                 Switch.adaptive(
                   // adaptive mean andriod ma andriod nu switch icon and ios ma ios nu swith icon
                   value: _isShowChart,
