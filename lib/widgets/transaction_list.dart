@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 // import 'package:intl/intl.dart';
 import 'package:date_time_format/date_time_format.dart';
 import '../models/transaction.dart';
+import 'transaction_item_card.dart';
 
 class TransationList extends StatelessWidget {
   List<Transaction> trans = [];
@@ -26,7 +27,9 @@ class TransationList extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     // crossAxisAlignment: cros,
                     children: [
-                      Center(child: const Text("no transaction added yet")),//this will never change dynamicaly so we use const 
+                      Center(
+                          child: const Text(
+                              "no transaction added yet")), //this will never change dynamicaly so we use const
                       Container(
                           height: contraints.maxHeight * 0.6,
                           child: Image.asset("assets/minions_PNG8.png"))
@@ -36,54 +39,8 @@ class TransationList extends StatelessWidget {
               : ListView.builder(
                   itemCount: trans.length,
                   itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 1),
-                      child: Card(
-                        color: Colors.grey[200],
-                        elevation: 4,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4),
-                          child: ListTile(
-                            leading: CircleAvatar(
-                              radius: 30,
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 3),
-                                child: FittedBox(
-                                    child: Text(
-                                        '\$ ${trans[index].amount.toString()}')),
-                              ),
-                            ),
-                            title: Text(
-                              trans[index].title,
-                              style: TextStyle(fontWeight: FontWeight.w700),
-                            ),
-                            subtitle: Text(
-                              trans[index]
-                                  .date
-                                  .format(DateTimeFormats.american),
-                              style: TextStyle(fontWeight: FontWeight.w500),
-                            ),
-                            trailing: MediaQuery.of(context).size.width > 460
-                                ? FlatButton.icon(
-                                    color: Colors.white,
-                                    textColor: Theme.of(context).errorColor,
-                                    onPressed: () =>
-                                        deleteTrans(trans[index].id),
-                                    icon: Icon(Icons.delete),
-                                    label: Text("delete"))
-                                : IconButton(
-                                    icon: Icon(
-                                      Icons.delete,
-                                      color: Theme.of(context).errorColor,
-                                    ),
-                                    onPressed: () =>
-                                        deleteTrans(trans[index].id),
-                                  ),
-                          ),
-                        ),
-                      ),
-                    );
+                    return TransactionItemCard(
+                       inx: index, trans: trans, deleteTrans: deleteTrans);
                     //or
                     // Card(
                     //   child: Row(
@@ -185,11 +142,12 @@ class TransationList extends StatelessWidget {
     */
   }
 }
-                // Padding(
-                //   padding: const EdgeInsets.all(8.0),
-                //   child: Text(
-                //     "Transactions",
-                //     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-                //     // color: Theme.of(context).primaryColor,
-                //   ),
-                // ),
+
+// Padding(
+//   padding: const EdgeInsets.all(8.0),
+//   child: Text(
+//     "Transactions",
+//     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+//     // color: Theme.of(context).primaryColor,
+//   ),
+// ),
