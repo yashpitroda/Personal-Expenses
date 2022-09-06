@@ -26,7 +26,7 @@ class TransationList extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     // crossAxisAlignment: cros,
                     children: [
-                      Center(child: Text("no transaction added yet")),
+                      Center(child: const Text("no transaction added yet")),//this will never change dynamicaly so we use const 
                       Container(
                           height: contraints.maxHeight * 0.6,
                           child: Image.asset("assets/minions_PNG8.png"))
