@@ -61,18 +61,18 @@ class _MyHomePageState extends State<MyHomePage> {
   // String amountInput = '';
   bool _isShowChart = false;
   final List<Transaction> _usertransactionList = [
-    // Transaction(
-    //   id: "t1",
-    //   amount: 89.77,
-    //   date: DateTime.now(),
-    //   title: "books",
-    // ),
-    // Transaction(
-    //   id: "t2",
-    //   amount: 34.67,
-    //   date: DateTime.now(),
-    //   title: "goods",
-    // ),
+    Transaction(
+      id: "t1",
+      amount: 89.77,
+      date: DateTime.now(),
+      title: "books",
+    ),
+    Transaction(
+      id: "t2",
+      amount: 34.67,
+      date: DateTime.now(),
+      title: "goods",
+    ),
   ];
   List<Transaction> get _resentTransaction {
     return _usertransactionList.where((tx) {
