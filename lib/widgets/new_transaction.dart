@@ -95,7 +95,7 @@ class _NewTransactionState extends State<NewTransaction> {
                         ? "No Date selected!"
                         : _selectedDate!.format(DateTimeFormats.american),
                   ),
-                  FlatButton(
+                  TextButton(
                       onPressed: _presentDatePicker,
                       child: Text(
                         "Choose Date",

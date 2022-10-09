@@ -11,9 +11,7 @@ class TransactionItemCard extends StatefulWidget {
     required this.inx,
     required this.trans,
     required this.deleteTrans,
-  })
-   : super(key: key)
-   ;
+  }) : super(key: key);
 
   final List<Transaction> trans;
   final Function deleteTrans;
@@ -48,7 +46,8 @@ class _TransactionItemCardState extends State<TransactionItemCard> {
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 4),
           child: ListTile(
-            leading: CircleAvatar(backgroundColor: _bgclolor,
+            leading: CircleAvatar(
+              backgroundColor: _bgclolor,
               radius: 30,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 3),
@@ -66,9 +65,9 @@ class _TransactionItemCardState extends State<TransactionItemCard> {
               style: TextStyle(fontWeight: FontWeight.w500),
             ),
             trailing: MediaQuery.of(context).size.width > 460
-                ? FlatButton.icon(
-                    color: Colors.white,
-                    textColor: Theme.of(context).errorColor,
+                ? TextButton.icon(
+                    // color: Colors.white,
+                    // textColor: Theme.of(context).errorColor,
                     onPressed: () =>
                         widget.deleteTrans(widget.trans[widget.inx].id),
                     icon: Icon(Icons.delete),
